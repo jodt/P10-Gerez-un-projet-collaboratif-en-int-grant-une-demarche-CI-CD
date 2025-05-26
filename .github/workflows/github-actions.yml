@@ -19,4 +19,5 @@ jobs:
 
       - name: Run back-end tests
         run: mvn test
+        working-directory: ./back
 
