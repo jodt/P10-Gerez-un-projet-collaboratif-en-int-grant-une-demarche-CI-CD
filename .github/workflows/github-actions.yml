@@ -1,0 +1,22 @@
+name: BobApp CI/CD
+
+on:
+  push:
+    branches:
+      - feat/github-actions
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run back-end tests
+        run: mvn test
+
