@@ -27,6 +27,24 @@ jobs:
         run: mvn test
         working-directory: ./back
 
+      - name: Generate JaCoCo coverage report
+        run: mvn jacoco:report
+
+      - name: Publish test report
+        uses: phoenix-actions/test-reporting@v8
+        id: test-report
+        if: success() || failure()
+        with:
+          name: Backend Tests
+          path: '**/target/surefire-reports/*.xml'
+          reporter: java-junit
+
+      - name: Upload JaCoCo report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
