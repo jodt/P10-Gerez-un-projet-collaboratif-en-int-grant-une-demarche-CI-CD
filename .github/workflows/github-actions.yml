@@ -27,3 +27,7 @@ jobs:
         run: mvn test
         working-directory: ./back
 
+      - name: Run front-end tests
+        run: npm test
+        working-directory: ./front
+
