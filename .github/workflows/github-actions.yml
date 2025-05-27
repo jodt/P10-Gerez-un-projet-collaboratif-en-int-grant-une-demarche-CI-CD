@@ -27,7 +27,15 @@ jobs:
         run: mvn test
         working-directory: ./back
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install front-end dependencies
+        run: npm ci
+        working-directory: ./front
+
       - name: Run front-end tests
         run: npm test
         working-directory: ./front
-
