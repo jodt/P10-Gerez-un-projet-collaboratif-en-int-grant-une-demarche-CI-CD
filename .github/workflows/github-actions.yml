@@ -59,5 +59,11 @@ jobs:
         working-directory: ./front
 
       - name: Run front-end tests
-        run: npx ng test --browsers=ChromeHeadless --watch=false --no-progress
+        run: npx ng test --browsers=ChromeHeadless --watch=false --no-progress --code-coverage
         working-directory: ./front
+
+      - name: Upload front-end coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage-report
+          path: front/coverage/bobapp/
