@@ -3,6 +3,7 @@ name: BobApp CI/CD
 on:
   push:
     branches:
+      - main
       - feat/github-actions
   pull_request:
     branches:
@@ -66,7 +67,7 @@ jobs:
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jodt_P10-Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jodt_P10-Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-Back
         working-directory: ./back
 
       - name: Set up Node.js
@@ -87,3 +88,9 @@ jobs:
         with:
           name: frontend-coverage-report
           path: front/coverage/bobapp/
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
