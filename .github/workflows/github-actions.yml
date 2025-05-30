@@ -53,25 +53,16 @@ jobs:
           name: jacoco-report
           path: back/target/site/jacoco/
 
-      - name: Cache SonarQube packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+      - name: Compile the project
+        run: mvn compile
+        working-directory: ./back
 
-      - name: Cache Maven packages
-        uses: actions/cache@v4
+      - name: SonarQubeScan
+        uses: SonarSource/sonarqube-scan-action@v5
         with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
-      - name: Build and analyze
+          projectBaseDir: ./back
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=jodt_P10-Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-Back
-        working-directory: ./back
 
 
   front:
