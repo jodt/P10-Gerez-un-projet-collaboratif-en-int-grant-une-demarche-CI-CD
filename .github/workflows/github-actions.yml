@@ -67,7 +67,11 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: SonarQube Scan
+      - name: Compile the project
+        run: mvn compile
+        working-directory: ./back
+
+      - name: SonarQubeScan
         uses: SonarSource/sonarqube-scan-action@v5
         with:
           projectBaseDir: ./back
