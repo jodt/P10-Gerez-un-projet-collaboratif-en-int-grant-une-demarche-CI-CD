@@ -57,12 +57,9 @@ jobs:
         run: mvn compile
         working-directory: ./back
 
-      - name: SonarQubeScan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectBaseDir: ./back
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube scan with Maven
+        run: mvn sonar:sonar -Dsonar.projectKey=jodt_P10-Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-Back -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        working-directory: ./back
 
 
   front:
