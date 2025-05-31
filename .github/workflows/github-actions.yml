@@ -53,10 +53,6 @@ jobs:
           name: jacoco-report
           path: back/target/site/jacoco/
 
-      - name: Compile the project
-        run: mvn compile
-        working-directory: ./back
-
       - name: SonarQube scan with Maven
         run: mvn sonar:sonar -Dsonar.projectKey=jodt_P10-Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-Back -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         working-directory: ./back
