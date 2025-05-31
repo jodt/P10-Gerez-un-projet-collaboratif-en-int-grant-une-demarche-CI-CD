@@ -3,7 +3,6 @@ name: BobApp Front
 on:
   push:
     branches:
-      - main
       - develop
       - 'feat/**'
   pull_request:
