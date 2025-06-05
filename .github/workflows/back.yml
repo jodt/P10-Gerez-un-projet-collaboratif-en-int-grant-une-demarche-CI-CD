@@ -30,8 +30,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Run back-end tests
-        run: mvn test
+      - name: Run back-end tests and build
+        run: mvn clean verify
         working-directory: ./back
 
       - name: Generate JaCoCo coverage report
