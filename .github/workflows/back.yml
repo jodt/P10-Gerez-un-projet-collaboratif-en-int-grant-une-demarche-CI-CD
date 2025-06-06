@@ -55,10 +55,19 @@ jobs:
 
       - name: SonarQube scan with Maven
         run: mvn sonar:sonar
+<<<<<<< Updated upstream
             -Dsonar.projectKey=jodt_P10-Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-Back
             -Dsonar.organization=jodt62150
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+=======
+          -Dsonar.projectKey=jodt_P10-Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-Back
+          -Dsonar.projectName="BobApp Back"
+          -Dsonar.organization=jodt62150
+          -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+>>>>>>> Stashed changes
         working-directory: ./back
 
